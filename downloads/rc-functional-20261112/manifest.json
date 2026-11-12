@@ -1,0 +1,55 @@
+{
+  "name": "Meu-Ritmo-Funcional-RC.apk",
+  "size": 4290179,
+  "sha256": "3a17ce1eb2208dcffd932fd420752dc76fa9c2291ed14429f5db417b13f17d32",
+  "sourceRun": 43233578981,
+  "version": "2.1.0-beta.1-rc",
+  "status": "functional-candidate",
+  "parts": [
+    {
+      "file": "part-00.bin",
+      "sha": "e596104794ab9fa6ef5aa0d926c136fa6143ff91",
+      "bytes": 480000
+    },
+    {
+      "file": "part-01.bin",
+      "sha": "63433b9907f6914079c2b52491dd1a49729d38fe",
+      "bytes": 480000
+    },
+    {
+      "file": "part-02.bin",
+      "sha": "aac8ee54aa01a23954a966fbe34c64f3ffe290f9",
+      "bytes": 480000
+    },
+    {
+      "file": "part-03.bin",
+      "sha": "2c8a4ac88f0eeaf6212512729e183b397ab9aa14",
+      "bytes": 480000
+    },
+    {
+      "file": "part-04.bin",
+      "sha": "49350e0044813a8e0207cec0df6dca5bcb0653f5",
+      "bytes": 480000
+    },
+    {
+      "file": "part-05.bin",
+      "sha": "1c3c2b7250768cb12ce1c969aaaa4ce7dfdcc4ec",
+      "bytes": 480000
+    },
+    {
+      "file": "part-06.bin",
+      "sha": "3f075b9f2e9e69cd2a83549038cd6bb9e91433fe",
+      "bytes": 480000
+    },
+    {
+      "file": "part-07.bin",
+      "sha": "1d640e49ff9e35221d0af935c5d30fa5f1c3d1b4",
+      "bytes": 480000
+    },
+    {
+      "file": "part-08.bin",
+      "sha": "7d34a22a146b2b06d8010d94ada7ea3cbaa12722",
+      "bytes": 450179
+    }
+  ]
+}
