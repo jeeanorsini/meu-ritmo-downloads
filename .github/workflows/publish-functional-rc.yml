@@ -1,0 +1,47 @@
+name: Publicar APK funcional RC do Meu Ritmo
+
+on:
+  push:
+    paths:
+      - '.github/workflows/publish-functional-rc.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  assemble-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reconstituir APK e verificar integridade
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat downloads/rc-functional-20261112/part-{00..08}.bin > Meu-Ritmo-Funcional-RC.apk
+          echo "3a17ce1eb2208dcffd932fd420752dc76fa9c2291ed14429f5db417b13f17d32  Meu-Ritmo-Funcional-RC.apk" | sha256sum --check
+          test "$(wc -c < Meu-Ritmo-Funcional-RC.apk)" -eq 4290179
+      - name: Publicar release publica de homologacao
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="v2.1.0-beta.1-functional-rc"
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" Meu-Ritmo-Funcional-RC.apk --clobber
+          else
+            gh release create "$TAG" Meu-Ritmo-Funcional-RC.apk \
+              --title "Meu Ritmo 2.1.0 Beta 1 — RC funcional" \
+              --notes "Versao de homologacao. Testes de logica, persistencia, navegacao Android e smoke responsivo aprovados na CI; ainda necessita teste manual no aparelho. Aplicativo isolado com sufixo .rc para nao substituir dados existentes. Fonte: run 43233578981, SHA-256 3a17ce1eb2208dcffd932fd420752dc76fa9c2291ed14429f5db417b13f17d32." \
+              --prerelease
+          fi
+      - name: Guardar artefato do APK caso a Release falhe
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Meu-Ritmo-Funcional-RC
+          path: Meu-Ritmo-Funcional-RC.apk
+          if-no-files-found: ignore
+          retention-days: 7
